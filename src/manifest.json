@@ -68,59 +68,59 @@
     "switch-pinned-tab-1": {
       "description": "Switch to the first pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+1"
+        "default": "Alt+"1"
       }
     },
     "switch-pinned-tab-2": {
       "description": "Switch to the second pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+2"
+        "default": "Alt+"2"
       }
     },
     "switch-pinned-tab-3": {
       "description": "Switch to the third pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+3"
+        "default": "Alt+"3"
       }
     },
     "switch-pinned-tab-4": {
       "description": "Switch to the fourth pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+4"
+        "default": "Alt+"4"
       }
     },
     "switch-pinned-tab-5": {
       "description": "Switch to the fifth pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+5"
+        "default": "Alt+"5"
       }
     },
     "switch-pinned-tab-6": {
       "description": "Switch to the sixth pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+6"
+        "default": "Alt+"6"
       }
     },
     "switch-pinned-tab-7": {
       "description": "Switch to the seventh pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+7"
+        "default": "Alt+"7"
       }
     },
     "switch-pinned-tab-8": {
       "description": "Switch to the eighth pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+8"
+        "default": "Alt+"8"
       }
     },
     "switch-pinned-tab-9": {
       "description": "Switch to the last pinned tab",
       "suggested_key": {
-        "default": "Alt+Shift+9"
+        "default": "Alt+"9"
       }
     }
   },
-  "description": "Switch unpinned tabs with Ctrl+Number and pinned tabs with Alt+Shift+Number. Ctrl+9 and Alt+Shift+9 jump to the last tab in that group.",
+  "description": "Switch unpinned tabs with Ctrl+Number and pinned tabs with Alt+Number. Ctrl+9 and Alt+9 jump to the last tab in that group.",
   "homepage_url": "https://github.com/AbigailBuccaneer/firefox-ctrlnumber#readme",
   "manifest_version": 2,
   "name": "Ctrl+Number to switch tabs",

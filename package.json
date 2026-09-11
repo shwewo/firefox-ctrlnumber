@@ -1,7 +1,7 @@
 {
   "name": "firefox-ctrlnumber",
   "version": "1.1.0",
-  "description": "Switch unpinned tabs with Ctrl+Number and pinned tabs with Alt+Shift+Number. Ctrl+9 and Alt+Shift+9 jump to the last tab in that group.",
+  "description": "Switch unpinned tabs with Ctrl+Number and pinned tabs with Alt+Number. Ctrl+9 and Alt+9 jump to the last tab in that group.",
   "main": "ctrlnumber.js",
   "scripts": {
     "test": "jsonlint --quiet *.json src/*.json && eslint . && web-ext lint --warnings-as-errors --no-input=true --source-dir src",
