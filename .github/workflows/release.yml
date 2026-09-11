@@ -15,8 +15,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build XPI
-        run: (cd src && zip -X -r ../firefox-ctrlnumber.xpi .)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Sign XPI with Mozilla
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${WEB_EXT_API_KEY}" ] || [ -z "${WEB_EXT_API_SECRET}" ]; then
+            echo "::error::Add repository secrets AMO_JWT_ISSUER and AMO_JWT_SECRET (AMO JWT issuer + JWT secret)."
+            exit 1
+          fi
+          npx --yes web-ext@8 sign \
+            --source-dir src \
+            --channel unlisted \
+            --artifacts-dir web-ext-artifacts \
+            --timeout 900000 \
+            --no-input
+          shopt -s nullglob
+          xpis=(web-ext-artifacts/*.xpi)
+          if [ "${#xpis[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one signed XPI in web-ext-artifacts/"
+            ls -la web-ext-artifacts || true
+            exit 1
+          fi
+          cp "${xpis[0]}" firefox-ctrlnumber.xpi
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
@@ -24,3 +50,4 @@ jobs:
           files: firefox-ctrlnumber.xpi
           generate_release_notes: true
           fail_on_unmatched_files: true
+          make_latest: true
