@@ -1,23 +1,53 @@
 name: release
 
+# Same idea as shwewo/seadroid: a master push (or manual run) publishes a
+# unique GitHub Release. A v* tag uses that tag name as-is.
+# AMO rejects duplicate versions, so master builds stamp
+# <manifest.version>.<run_number> into the XPI before signing.
+
 on:
   push:
-    tags:
-      - "v*"
+    branches: [master]
+    tags: ["v*"]
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   release:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+      - name: Stamp unique add-on version
+        id: ver
+        run: |
+          set -euo pipefail
+          base="$(jq -r .version src/manifest.json)"
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            tag="${GITHUB_REF_NAME}"
+            ver="${GITHUB_REF_NAME#v}"
+            relname="${GITHUB_REF_NAME}"
+          else
+            ver="${base}.${GITHUB_RUN_NUMBER}"
+            tag="v${ver}"
+            relname="v${ver}"
+          fi
+          jq --arg v "$ver" '.version = $v' src/manifest.json > src/manifest.json.tmp
+          mv src/manifest.json.tmp src/manifest.json
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "ver=$ver" >> "$GITHUB_OUTPUT"
+          echo "relname=$relname" >> "$GITHUB_OUTPUT"
 
       - name: Sign XPI with Mozilla
         env:
@@ -47,7 +77,13 @@ jobs:
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          name: ${{ steps.ver.outputs.relname }}
+          target_commitish: ${{ github.sha }}
           files: firefox-ctrlnumber.xpi
           generate_release_notes: true
           fail_on_unmatched_files: true
           make_latest: true
+          body: |
+            Add-on version `${{ steps.ver.outputs.ver }}`.
+            Commit: ${{ github.sha }}
