@@ -68,55 +68,55 @@
     "switch-pinned-tab-1": {
       "description": "Switch to the first pinned tab",
       "suggested_key": {
-        "default": "Alt+"1"
+        "default": "Alt+1"
       }
     },
     "switch-pinned-tab-2": {
       "description": "Switch to the second pinned tab",
       "suggested_key": {
-        "default": "Alt+"2"
+        "default": "Alt+2"
       }
     },
     "switch-pinned-tab-3": {
       "description": "Switch to the third pinned tab",
       "suggested_key": {
-        "default": "Alt+"3"
+        "default": "Alt+3"
       }
     },
     "switch-pinned-tab-4": {
       "description": "Switch to the fourth pinned tab",
       "suggested_key": {
-        "default": "Alt+"4"
+        "default": "Alt+4"
       }
     },
     "switch-pinned-tab-5": {
       "description": "Switch to the fifth pinned tab",
       "suggested_key": {
-        "default": "Alt+"5"
+        "default": "Alt+5"
       }
     },
     "switch-pinned-tab-6": {
       "description": "Switch to the sixth pinned tab",
       "suggested_key": {
-        "default": "Alt+"6"
+        "default": "Alt+6"
       }
     },
     "switch-pinned-tab-7": {
       "description": "Switch to the seventh pinned tab",
       "suggested_key": {
-        "default": "Alt+"7"
+        "default": "Alt+7"
       }
     },
     "switch-pinned-tab-8": {
       "description": "Switch to the eighth pinned tab",
       "suggested_key": {
-        "default": "Alt+"8"
+        "default": "Alt+8"
       }
     },
     "switch-pinned-tab-9": {
       "description": "Switch to the last pinned tab",
       "suggested_key": {
-        "default": "Alt+"9"
+        "default": "Alt+9"
       }
     }
   },
